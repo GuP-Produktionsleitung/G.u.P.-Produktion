@@ -1,12 +1,69 @@
-<nav class="gup-nav">
-    <div class="gup-nav-title">G.U.P. // ZENTRALE LEITSTELLE</div>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zulieferer – Übersicht</title>
 
-    <a href="index.html">Hauptterminal</a>
-    <a href="ANALYTIKON-7.html">Analytikon‑7 // Systemkern</a>
-    <a href="ARCHIV.html">Archiv der Operationen</a>
+    <link rel="stylesheet" href="gup-style.css">
+</head>
 
-    <!-- Hauptmodule -->
-    <a href="bauprojekte.html">Bauprojekte</a>
-    <a href="zulieferer.html">Zulieferer</a>
-    <a href="blueprint-archiv.html">Blueprint‑Archiv</a>
-</nav>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="gup-nav">
+        <div class="gup-nav-title">G.U.P. // ZENTRALE LEITSTELLE</div>
+
+        <a href="index.html">Hauptterminal</a>
+        <a href="ANALYTIKON-7.html">Analytikon‑7 // Systemkern</a>
+        <a href="ARCHIV.html">Archiv der Operationen</a>
+
+        <!-- Hauptmodule -->
+        <a href="bauprojekte.html">Bauprojekte</a>
+        <a href="zulieferer.html" class="active">Zulieferer</a>
+        <a href="blueprint-archiv.html">Blueprint‑Archiv</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header-block">
+            <span class="header-line">G.U.P. INTERNAL // ZULIEFERER</span>
+            <span class="header-line">SYSTEM: MATERIAL- UND AUFTRAGSMANAGEMENT</span>
+            <span class="header-status">ÜBERSICHT // EXTERNE LOGISTIK</span>
+
+            <div style="margin-top: 10px; border-top: 1px dashed #444; padding-top: 10px;">
+                <span class="header-line"><strong>STATUS:</strong> MODUL AKTIV</span>
+                <span class="header-line"><strong>DATUM:</strong> 06.06.2026</span>
+                <span class="header-line"><strong>REF:</strong> ZL_OVERVIEW_v1.0</span>
+            </div>
+        </div>
+
+        <!-- INTRO TEXT -->
+        <h2>Zulieferer – Zentrale Übersicht</h2>
+        <p>
+            Dieses Modul dient der Verwaltung aller externen Zuliefererprozesse der G.U.P.
+            Hier werden Auftragsvergaben, Materialbestellungen und Lieferketten überwacht und gesteuert.
+        </p>
+
+        <p>
+            Wählen Sie unten ein Untermodul aus, um fortzufahren.
+        </p>
+
+        <!-- DASHBOARD -->
+        <div class="portal-grid">
+
+            <div class="portal-box">
+                <a href="zulieferer-auftragsvergabe.html">Auftragsvergabe</a>
+            </div>
+
+            <div class="portal-box">
+                <a href="zulieferer-material.html">Materialbestellungen</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
