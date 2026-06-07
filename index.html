@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G.U.P. – Produktionsleitung</title>
+    <title>G.U.P. – Zentrale Leitstelle</title>
 
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -24,6 +24,7 @@
             font-family: "Roboto", sans-serif;
             line-height: 1.6;
             padding: 40px 20px;
+            margin: 0;
         }
 
         .container {
@@ -31,7 +32,7 @@
             margin: auto;
         }
 
-        /* G.U.P. LORE NAVIGATION */
+        /* NAVIGATION */
         .gup-nav {
             display: flex;
             flex-direction: column;
@@ -61,19 +62,11 @@
             font-weight: 700;
             letter-spacing: 1px;
             transition: 0.3s;
-            position: relative;
         }
 
         .gup-nav a:hover {
             border-color: var(--accent-gold);
             color: var(--accent-gold);
-        }
-
-        .gup-nav a::before {
-            content: attr(data-section) " // ";
-            opacity: 0.5;
-            margin-right: 4px;
-            font-weight: 400;
         }
 
         .gup-nav a.active {
@@ -101,16 +94,50 @@
             font-weight: bold;
             color: var(--accent-gold);
         }
+
+        /* PORTAL GRID */
+        .portal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .portal-box {
+            background: var(--box-bg);
+            border: 1px solid var(--accent-cyan);
+            padding: 20px;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .portal-box:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            cursor: pointer;
+        }
+
+        .portal-box a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+
+        .portal-box a:hover {
+            color: var(--accent-gold);
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- GLOBALE NAVIGATION -->
+    <!-- NAVIGATION -->
     <nav class="gup-nav">
         <div class="gup-nav-title">G.U.P. // ZENTRALE LEITSTELLE</div>
 
-        <a href="index.html" data-section="leitstelle">Hauptterminal</a>
+        <a href="index.html" class="active" data-section="leitstelle">Hauptterminal</a>
         <a href="ANALYTIKON-7.html" data-section="analytikon">Analytikon‑7 // Systemkern</a>
         <a href="ARCHIV.html" data-section="archiv">Archiv der Operationen</a>
     </nav>
@@ -130,7 +157,7 @@
             </div>
         </div>
 
-        <!-- HAUPTINHALT -->
+        <!-- INTRO TEXT -->
         <h2>Willkommen in der G.U.P.-Produktionsleitung</h2>
         <p>
             Dieses Terminal dient als zentrale Verwaltungsoberfläche für alle produktionsrelevanten Systeme,
@@ -141,17 +168,27 @@
             Wählen Sie im Navigationsbereich oben ein System aus, um fortzufahren.
         </p>
 
-    </div>
+        <!-- PORTAL GRID -->
+        <div class="portal-grid">
 
-    <!-- AKTIVE SEITE AUTOMATISCH MARKIEREN -->
-    <script>
-        const current = location.pathname.split("/").pop() || "index.html";
-        document.querySelectorAll(".gup-nav a").forEach(a => {
-            if (a.getAttribute("href") === current) {
-                a.classList.add("active");
-            }
-        });
-    </script>
+            <!-- Bestehende Portale -->
+            <div class="portal-box"><a href="index.html">Leitstelle</a></div>
+            <div class="portal-box"><a href="ANALYTIKON-7.html">Analytikon‑7</a></div>
+            <div class="portal-box"><a href="ARCHIV.html">Archiv</a></div>
+
+            <!-- Neue Portale -->
+            <div class="portal-box"><a href="#">Bauprojekte – aktiv</a></div>
+            <div class="portal-box"><a href="#">Bauprojekte – geplant</a></div>
+            <div class="portal-box"><a href="#">Bauprojekte – abgeschlossen</a></div>
+
+            <div class="portal-box"><a href="#">Zulieferer – Auftragsvergabe</a></div>
+            <div class="portal-box"><a href="#">Zulieferer – Materialbestellungen</a></div>
+
+            <div class="portal-box"><a href="#">Blueprint‑Archiv</a></div>
+
+        </div>
+
+    </div>
 
 </body>
 </html>
