@@ -154,21 +154,23 @@
             color: var(--accent-white);
         }
 
-        .red-alert-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: var(--alert-red);
-            color: #000;
-            font-family: var(--font-mono);
-            font-size: 10px;
-            font-weight: bold;
-            padding: 5px 10px;
-            border: 2px solid #fff;
-            animation: blink 1s infinite;
-            box-shadow: 0 0 15px var(--alert-red);
-            z-index: 10;
-        }
+.red-alert-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--alert-red);
+    color: #000;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border: 2px solid #fff;
+    animation: blink 1s infinite;
+    box-shadow: 0 0 15px var(--alert-red);
+    z-index: 10;
+    white-space: nowrap;
+}
 
         @keyframes blink {
             0%, 100% { opacity: 1; }
