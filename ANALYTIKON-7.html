@@ -103,7 +103,7 @@
         }
     </style>
 
-    <!-- ORIGINAL HUD STYLES (unverändert) -->
+    <!-- ORIGINAL HUD STYLES -->
     <style>
         :root {
             --hud-bg: #050505;
@@ -154,23 +154,21 @@
             color: var(--accent-white);
         }
 
-.red-alert-badge {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--alert-red);
-    color: #000;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: bold;
-    padding: 5px 10px;
-    border: 2px solid #fff;
-    animation: blink 1s infinite;
-    box-shadow: 0 0 15px var(--alert-red);
-    z-index: 10;
-    white-space: nowrap;
-}
+        /* FIXED BADGE — jetzt mittig */
+        .red-alert-badge {
+            position: static;
+            background-color: var(--alert-red);
+            color: #000;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: bold;
+            padding: 5px 10px;
+            border: 2px solid #fff;
+            animation: blink 1s infinite;
+            box-shadow: 0 0 15px var(--alert-red);
+            white-space: nowrap;
+            margin: 0 20px;
+        }
 
         @keyframes blink {
             0%, 100% { opacity: 1; }
@@ -376,13 +374,16 @@
     <div class="hud-container">
         <div class="hud-header">
             <div class="hud-title">G.U.P. INTERNAL // PRODUCTION LOGIC</div>
-            <div class="hud-status">SYSTEM: ONLINE // CORE: ANALYTIKON-7</div>
+
+            <!-- BADGE JETZT IN DER MITTE -->
             <div class="red-alert-badge">RED ALERT</div>
+
+            <div class="hud-status">SYSTEM: ONLINE // CORE: ANALYTIKON-7</div>
         </div>
 
         <div class="hud-content">
+            <!-- dein kompletter Inhalt bleibt unverändert -->
             <h1>PROTOKOLL: PROJEKT „ATHANOR-SCHILD"</h1>
-            
             <div class="meta-data">
                 <div class="meta-item">
                     <strong>EMPFÄNGER:</strong>
@@ -466,11 +467,13 @@
                 <div class="signature-title">Chief Executive Officer<br>Gruber und Partner G.u.P.</div>
             </div>
 
-            <div class="footer-note">
-                SYSTEM STATUS: AWAITING INPUT // CORE: ANALYTIKON-7 ACTIVE.<br>
-                VERTRAULICH: INTERN DISTRIBUTION ONLY.
-            </div>
-        </div>
-    </div>
+          <div class="footer-note">
+    SYSTEM STATUS: AWAITING INPUT // CORE: ANALYTIKON-7 ACTIVE.<br>
+    VERTRAULICH: INTERN DISTRIBUTION ONLY.
+</div>
 
-    <!-- ACTIVE PAGE
+        </div> <!-- hud-content -->
+    </div> <!-- hud-container -->
+
+</body>
+</html>
