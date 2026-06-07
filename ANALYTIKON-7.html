@@ -66,3 +66,96 @@
 
         .gup-nav a:hover {
             border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .gup-nav a::before {
+            content: attr(data-section) " // ";
+            opacity: 0.5;
+            margin-right: 4px;
+            font-weight: 400;
+        }
+
+        .gup-nav a.active {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* HEADER BLOCK */
+        .header-block {
+            background: var(--box-bg);
+            padding: 20px;
+            border: 1px solid var(--accent-cyan);
+            margin-bottom: 30px;
+        }
+
+        .header-line {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 4px;
+        }
+
+        .header-status {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: var(--accent-gold);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- GLOBALE NAVIGATION -->
+    <nav class="gup-nav">
+        <div class="gup-nav-title">G.U.P. // ZENTRALE LEITSTELLE</div>
+
+        <a href="index.html" data-section="leitstelle">Hauptterminal</a>
+        <a href="ANALYTIKON-7.html" data-section="analytikon">Analytikon‑7 // Systemkern</a>
+        <a href="ARCHIV.html" data-section="archiv">Archiv der Operationen</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header-block">
+            <span class="header-line">G.U.P. INTERNAL // GROSSRAUMRECHNER</span>
+            <span class="header-line">SYSTEM: ANALYTIKON‑7 // STATUS: ONLINE</span>
+            <span class="header-status">SONDERSCHALTUNG // ATHANOR‑SCHILD</span>
+
+            <div style="margin-top: 10px; border-top: 1px dashed #444; padding-top: 10px;">
+                <span class="header-line"><strong>MODUS:</strong> EHP/ISK‑Analyse // Alpha‑Fittings</span>
+                <span class="header-line"><strong>DATUM:</strong> 06.06.2026</span>
+                <span class="header-line"><strong>REF:</strong> ANALYTIKON_CORE_v3.4</span>
+            </div>
+        </div>
+
+        <!-- HAUPTINHALT -->
+        <h2>Analytikon‑7 // Systemkern</h2>
+        <p>
+            Der Großraumrechner <strong>ANALYTIKON‑7</strong> ist für die mathematische Bewertung von
+            Alpha‑tauglichen Fittings der Schiffsklassen <strong>Drake</strong> und <strong>Raven</strong>
+            im Rahmen der SONDERSCHALTUNG <em>ATHANOR‑SCHILD</em> verantwortlich.
+        </p>
+
+        <ul>
+            <li>EHP pro ISK</li>
+            <li>Alpha‑Konformität</li>
+            <li>Taktische Plausibilität</li>
+            <li>Flexibilität im Wardec‑Szenario</li>
+        </ul>
+
+    </div>
+
+    <!-- AKTIVE SEITE AUTOMATISCH MARKIEREN -->
+    <script>
+        const current = location.pathname.split("/").pop() || "ANALYTIKON-7.html";
+        document.querySelectorAll(".gup-nav a").forEach(a => {
+            if (a.getAttribute("href") === current) {
+                a.classList.add("active");
+            }
+        });
+    </script>
+
+</body>
+</html>
