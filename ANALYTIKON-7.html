@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>PROTOKOLL: ATHANOR-SCHILD // RED ALERT</title>
+    <style>
+        :root {
+            --bg-color: #050505;
+            --panel-bg: #0a0a0a;
+            --border-color: #333;
+            --text-main: #e0e0e0;
+            --text-muted: #888;
+            --accent-cyan: #00f0ff;
+            --accent-blue: #0066cc;
+            --accent-white: #ffffff;
+            --alert-red: #ff3333;
+            --font-mono: 'Courier New', Courier, monospace;
+            --font-ui: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-ui);
+            margin: 0;
+            padding: 40px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .hud-container {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+            background-color: var(--panel-bg);
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.05);
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .hud-header {
+            background: linear-gradient(90deg, #001122 0%, #000 100%);
+            border-bottom: 1px solid var(--accent-blue);
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .hud-title {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent-cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hud-status {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--accent-white);
+        }
+
+        .red-alert-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--alert-red);
+            color: #000;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: bold;
+            padding: 5px 10px;
+            border: 2px solid #fff;
+            animation: blink 1s infinite;
+            box-shadow: 0 0 15px var(--alert-red);
+            z-index: 10;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hud-content {
+            padding: 40px;
+        }
+
+        h1 {
+            font-family: var(--font-mono);
+            font-size: 32px;
+            text-transform: uppercase;
+            color: var(--accent-white);
+            margin: 0 0 10px 0;
+            letter-spacing: 3px;
+            border-left: 5px solid var(--accent-cyan);
+            padding-left: 15px;
+        }
+
+        .meta-data {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 20px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .meta-item strong {
+            color: var(--accent-cyan);
+            display: block;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-family: var(--font-mono);
+            font-size: 16px;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before {
+            content: ">>";
+            margin-right: 10px;
+            font-weight: bold;
+            color: var(--accent-white);
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--accent-cyan);
+            font-weight: bold;
+            background: rgba(0, 240, 255, 0.1);
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+
+        .alert-box {
+            border: 1px solid var(--alert-red);
+            background: rgba(255, 51, 51, 0.1);
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: var(--accent-white);
+            font-family: var(--font-mono);
+            border-left: 3px solid var(--alert-red);
+            box-shadow: 0 0 10px rgba(255, 51, 51, 0.2);
+        }
+
+        .data-box {
+            background-color: #000;
+            border: 1px solid var(--accent-cyan);
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--accent-cyan);
+            margin: 20px 0;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.1);
+        }
+
+        .data-box::before {
+            content: "INPUT_TERMINAL_V1.0 // ANALYTIKON-7";
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: var(--bg-color);
+            padding: 0 5px;
+            font-size: 10px;
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .data-label { color: #fff; }
+        .data-placeholder { color: #555; text-transform: lowercase; }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--accent-cyan);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .signature-block {
+            margin-top: 60px;
+            text-align: right;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .signature-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .signature-title {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            font-size: 10px;
+            color: #444;
+            text-align: right;
+            font-family: var(--font-mono);
+            border-top: 1px solid #222;
+            padding-top: 10px;
+        }
+
+        .acknowledgment {
+            font-size: 11px;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+            border-left: 2px solid var(--accent-blue);
+            padding-left: 10px;
+        }
+
+        @media print {
+            body { background-color: #fff; color: #000; padding: 20px; font-size: 11pt; }
+            .hud-container { border: 2px solid #000; box-shadow: none; background-color: #fff; padding: 0; max-width: 100%; }
+            .hud-header { background: #000 !important; color: #fff !important; border-bottom: 2px solid #000; }
+            .hud-title { color: #fff !important; }
+            .hud-status { color: #000 !important; }
+            .red-alert-badge { background: #000; color: #fff; border: 1px solid #000; animation: none; box-shadow: none; }
+            h1 { color: #000 !important; border-left: 5px solid #000 !important; font-size: 24pt; }
+            .meta-data { border-bottom: 1px solid #000; color: #000; }
+            .meta-item strong { color: #000; }
+            h2 { color: #000 !important; border-bottom: 1px solid #000; }
+            h2::before { color: #000; }
+            .highlight { color: #000 !important; background: #ddd !important; font-weight: bold; }
+            .alert-box { border: 1px solid #000; color: #000; background: #f0f0f0; border-left: 3px solid #000; box-shadow: none; }
+            .data-box { border: 2px solid #000; background: #fff; color: #000; font-family: 'Courier New', monospace; box-shadow: none; }
+            .data-box::before { color: #000; border: 1px solid #000; }
+            .data-label, .data-placeholder { color: #000; }
+            ul li::before { color: #000; }
+            .signature-name { color: #000; }
+            .signature-title { color: #333; }
+            .footer-note { color: #000; border-top: 1px solid #000; }
+            .acknowledgment { color: #333; border-left: 2px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hud-container">
+    <div class="hud-header">
+        <div class="hud-title">G.U.P. INTERNAL // PRODUCTION LOGIC</div>
+        <div class="hud-status">SYSTEM: ONLINE // CORE: ANALYTIKON-7</div>
+        <div class="red-alert-badge">RED ALERT</div>
+    </div>
+
+    <div class="hud-content">
+        <h1>PROTOKOLL: PROJEKT „ATHANOR-SCHILD"</h1>
+        
+        <div class="meta-data">
+            <div class="meta-item">
+                <strong>EMPFÄNGER:</strong>
+                ALLE MITARBEITER G.U.P.
+            </div>
+            <div class="meta-item">
+                <strong>DATE:</strong>
+                05.06.2026
+            </div>
+            <div class="meta-item">
+                <strong>REF:</strong>
+                DEF_DOC_DR-RV-001
+            </div>
+        </div>
+
+        <p>Die Entwicklung der defensiven Flotte (Klassen: <span class="highlight">Drake</span>, <span class="highlight">Raven</span>) ist im Gange. Um operative Effizienz im Konfliktfall (Wardec) zu garantieren, sind <span class="highlight">standardisierte, Alpha-taugliche Fittings</span> zwingend erforderlich.</p>
+
+        <h2>1. MISSION OBJECTIVE</h2>
+        <p>Entwicklung von Schiffskonfigurationen mit maximalem <span class="highlight">Überlebenswert (EHP)</span> bei minimalen <span class="highlight">Produktionskosten (ISK)</span>. Das Ziel ist die Massenproduktion von Modulen durch die Produktionsabteilung. Fokus liegt ausschließlich auf der Verteidigung der Holding-Corp als Alliierter.</p>
+
+        <h2>2. KATEGORIEN</h2>
+        <ul>
+            <li><span class="highlight">Drake „First Responder":</span> Nahkampf-Tank, Electronic Warfare (E-War), hohe Resistenz.</li>
+            <li><span class="highlight">Raven „Heavy Artillery":</span> Langstrecken-DPS, maximaler Schildtank.</li>
+        </ul>
+        <div class="alert-box">
+            KRITISCH: 100% ALPHA-TAUGLICHKEIT ERFORDERLICH. OMEGA-MODULE FÜHREN ZUM SOFORTIGEN AUSSCHLUSS.
+        </div>
+
+        <h2>3. BEWERTUNGSPROZEDUR</h2>
+        <p>Die Auswertung erfolgt nicht durch Personen, sondern durch den <span class="highlight">Supercomputer für Statistische Strategeme: ANALYTIKON-7</span>. Bewertungskriterien sind rein mathematisch:</p>
+        <ul>
+            <li>Verhältnis EHP zu ISK-Kosten.</li>
+            <li>Modul-Effizienz im spezifischen Wardec-Szenario.</li>
+            <li>Taktische Plausibilität der Konfiguration.</li>
+        </ul>
+        <p style="font-style: italic; color: #666;">Subjektive Faktoren sind ausgeschlossen. Die besten Daten gewinnen.</p>
+
+        <h2>4. DATENEINGABE</h2>
+        <p>Sendet eure Daten bis zum <span class="highlight">13.06.2026</span> im folgenden Format an die Produktionsleitung:</p>
+        
+        <div class="data-box">
+            <div class="data-row">
+                <span class="data-label">NAME:</span>
+                <span class="data-placeholder">[Euer Name]</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">KATEGORIE:</span>
+                <span class="data-placeholder">[Drake / Raven]</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">FIT-NAME:</span>
+                <span class="data-placeholder">[Name]</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">EFT-STRING:</span>
+                <span class="data-placeholder">[Hier einfügen]</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">KOSTEN (ohne Schiff):</span>
+                <span class="data-placeholder">[Mio ISK]</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">EHP (geschätzt):</span>
+                <span class="data-placeholder">[Wert]</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">BEGRÜNDUNG:</span>
+                <span class="data-placeholder">[Max. 3 Sätze zur Taktik]</span>
+            </div>
+        </div>
+
+        <h2>5. ANREIZPROGRAMM</h2>
+        <p>Die Gewinner-Fittings werden als offizielle Corp-Doktrin in die Serienproduktion überführt. Als Anerkennung für euren Beitrag stellt die Produktionsleitung exklusive <span class="highlight">SKINs für Drake und Raven</span> für die Gewinner bereit.</p>
+        <div class="acknowledgment">
+            Gesponsert durch Homer J. Adams, Leiter der Produktionsabteilung.
+        </div>
+
+        <div class="signature-block">
+            <div class="signature-name">LOGAN RIX</div>
+            <div class="signature-title">Chief Executive Officer<br>Gruber und Partner G.u.P.</div>
+        </div>
+
+        <div class="footer-note">
+            SYSTEM STATUS: AWAITING INPUT // CORE: ANALYTIKON-7 ACTIVE.<br>
+            VERTRAULICH: INTERN DISTRIBUTION ONLY.
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
