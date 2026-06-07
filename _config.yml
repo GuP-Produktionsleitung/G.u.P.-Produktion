@@ -1,0 +1,13 @@
+title: "G.u.P. Produktionsleitung"
+description: "Gruber und Partner - Official Production Portal"
+theme: null
+plugins: []
+
+# GitHub Pages Settings
+show_downloads: false
+include:
+  - .github
+
+# URL Settings
+url: https://GuP-Produktionsleitung.github.io/G.u.P.-Produktion
+baseurl: /G.u.P.-Produktion
