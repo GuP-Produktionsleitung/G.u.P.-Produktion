@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Blueprint‑Archiv</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+/* identisch */
+</style>
+</head>
+
+<body>
+
+<nav class="gup-nav">
+    <div class="gup-nav-title">G.U.P. // ZENTRALE LEITSTELLE</div>
+    <a href="index.html">Hauptterminal</a>
+    <a href="ANALYTIKON-7.html">Analytikon‑7</a>
+    <a href="ARCHIV.html">Archiv</a>
+    <a href="bauprojekte-aktiv.html">Bauprojekte – aktiv</a>
+    <a href="bauprojekte-geplant.html">Bauprojekte – geplant</a>
+    <a href="bauprojekte-abgeschlossen.html">Bauprojekte – abgeschlossen</a>
+    <a href="zulieferer-auftragsvergabe.html">Zulieferer – Auftragsvergabe</a>
+    <a href="zulieferer-material.html">Zulieferer – Materialbestellungen</a>
+    <a href="blueprint-archiv.html" class="active">Blueprint‑Archiv</a>
+</nav>
+
+<div class="container">
+    <div class="header-block">
+        <span class="header-line">G.U.P. INTERNAL // ARCHIVSYSTEM</span>
+        <span class="header-line">MODUL: BLUEPRINT‑ARCHIV</span>
+    </div>
+
+    <h2>Blueprint‑Archiv</h2>
+    <p>Hier werden alle Baupläne, Entwürfe und technischen Dokumente archiviert.</p>
+</div>
+
+</body>
+</html>
