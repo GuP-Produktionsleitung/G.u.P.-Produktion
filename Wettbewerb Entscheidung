@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>ATHANORS SCHILD – Gewinnerbekanntgabe</title>
+<style>
+    :root {
+        --bg: #05070a;
+        --fg: #e0e0e0;
+        --accent: #76c7ff;
+        --alert: #ff4d4d;
+        --muted: #888;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: var(--bg);
+        color: var(--fg);
+        font-family: "Consolas", "Courier New", monospace;
+        padding: 40px;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-top: 0;
+    }
+
+    .header {
+        animation: fadeIn 1.2s ease-out forwards;
+        opacity: 0;
+    }
+
+    .scanline {
+        position: fixed;
+        top: -50%;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(to bottom, rgba(118,199,255,0.08), transparent);
+        mix-blend-mode: screen;
+        animation: scan 6s linear infinite;
+        pointer-events: none;
+        z-index: 999;
+    }
+
+    .glitch {
+        position: relative;
+        display: inline-block;
+    }
+
+    .glitch::before,
+    .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0.4;
+        clip-path: inset(0 0 0 0);
+    }
+
+    .glitch::before {
+        color: #ff4d4d;
+        transform: translate(-2px, -1px);
+        animation: glitch1 2.5s infinite;
+    }
+
+    .glitch::after {
+        color: #76c7ff;
+        transform: translate(2px, 1px);
+        animation: glitch2 3s infinite;
+    }
+
+    .alert {
+        color: var(--alert);
+        font-weight: bold;
+        margin-top: 10px;
+        animation: pulse 1.4s ease-in-out infinite;
+    }
+
+    .section {
+        border-left: 3px solid var(--accent);
+        padding-left: 20px;
+        margin: 30px 0;
+        opacity: 0;
+        transform: translateY(10px);
+        animation: slideIn 0.8s ease-out forwards;
+    }
+
+    .section:nth-of-type(2) { animation-delay: 0.4s; }
+    .section:nth-of-type(3) { animation-delay: 0.8s; }
+    .section:nth-of-type(4) { animation-delay: 1.2s; }
+    .section:nth-of-type(5) { animation-delay: 1.6s; }
+
+    .winner {
+        background-color: #0b0f16;
+        border: 1px solid var(--accent);
+        padding: 20px;
+        margin: 20px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .winner::before {
+        content: "";
+        position: absolute;
+        top: -120%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle at 0 0, rgba(118,199,255,0.18), transparent 55%);
+        opacity: 0;
+        animation: sweep 4s ease-out infinite;
+        pointer-events: none;
+    }
+
+    ul {
+        margin-top: 5px;
+    }
+
+    .meta {
+        color: var(--muted);
+        font-size: 0.9em;
+    }
+
+    .cursor {
+        display: inline-block;
+        width: 10px;
+        background-color: var(--accent);
+        margin-left: 4px;
+        animation: blink 1s steps(1) infinite;
+    }
+
+    .typing {
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 2px solid var(--accent);
+        width: 0;
+        animation: typing 3s steps(40, end) forwards, caret 1s steps(1) infinite;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 0.4; }
+        50% { opacity: 1; }
+    }
+
+    @keyframes blink {
+        0%, 50% { background-color: var(--accent); }
+        51%, 100% { background-color: transparent; }
+    }
+
+    @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+
+    @keyframes caret {
+        0%, 50% { border-color: var(--accent); }
+        51%, 100% { border-color: transparent; }
+    }
+
+    @keyframes scan {
+        0% { transform: translateY(-100%); }
+        100% { transform: translate
